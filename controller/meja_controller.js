@@ -5,10 +5,10 @@ const prisma = new PrismaClient();
 export const getAllMeja = async(req,res) => {
 	try {
 		const response = await prisma.meja.findMany()
-		res.json(response)
+		res.status(200).json(response)
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -19,10 +19,10 @@ export const getMejaById = async(req,res) => {
 				id_meja: Number(req.params.id)
 			}
 		})
-		res.json(result)
+		res.status(200).json(result)
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -34,13 +34,13 @@ export const createMeja = async(req,res) => {
 				nomor_meja: nomor_meja,
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result,
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -55,13 +55,13 @@ export const updateMeja = async(req,res) => {
 				nomor_meja: nomor_meja
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -72,12 +72,12 @@ export const deleteMeja = async(req,res) => {
 				id_meja: Number(req.params.id)
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }

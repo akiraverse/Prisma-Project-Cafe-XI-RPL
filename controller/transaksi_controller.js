@@ -7,8 +7,8 @@ export const CreateTransaction = async(req,res) => {
 
 	const [getUserId, getMejaId, getMenuId] = await Promise.all([
 		prisma.user.findUnique({ where: {id_user: Number(id_user) }}),
-		prisma.meja.findUnique({ where: {id_meja: Number(id_meja)} }),
-		prisma.menu.findUnique({ where: {id_menu: Number(id_menu)} })
+		prisma.meja.findUnique({ where: {id_meja: Number(id_meja) }}),
+		prisma.menu.findUnique({ where: {id_menu: Number(id_menu) }})
 	]);
 
 	if (getUserId && getMejaId && getMenuId) {
@@ -48,20 +48,20 @@ export const CreateTransaction = async(req,res) => {
 						harga: getMenuId.harga
 					}
 				});
-				res.json({
+				res.status(200).json({
 					success: true,
 					transaksi: result,
 					detail: createDetail
 				});
 			} else {
-				res.json({ msg: 'transaksi gagal' });
+				res.status(400).json({ msg: 'transaksi gagal' });
 			}
 
 		} catch (error) {
 			console.log(error)
-			res.json({ msg: error })
+			res.status(500).json({ msg: error })
 		}
 	} else {
-		res.json({ msg: 'pilih user, meja dan menu yang tersedia yaa!' })
+		res.status(404).json({ msg: 'pilih user, meja dan menu yang tersedia yaa!' })
 	}
 }

@@ -13,10 +13,10 @@ const prisma = new PrismaClient();
 export const getAllUser = async(req,res) => {
 	try {
 		const response = await prisma.user.findMany()
-		res.json(response)
+		res.status(200).json(response)
 	} catch (error) {
 		console.log(error)
-		res.json({msg: erorr})
+		res.status(500).json({msg: erorr})
 	}
 }
 
@@ -27,10 +27,10 @@ export const getUserById = async(req,res) => {
 				id_user: Number(req.params.id)
 			}
 		})
-		res.json(result)
+		res.status(200).json(result)
 	} catch (error) {
 		console.log(error)
-		res.json({msg: erorr})
+		res.status(500).json({msg: erorr})
 	}
 }
 
@@ -44,13 +44,13 @@ export const createUser = async(req,res) => {
 				password: md5(password),
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: erorr})
+		res.status(500).json({msg: erorr})
 	}
 }
 
@@ -67,13 +67,13 @@ export const updateUser = async(req,res) => {
 				password: md5(password),
 			},
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result,
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -84,13 +84,13 @@ export const deleteUser = async(req,res) => {
 				id_user: Number(req.params.id)
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result,
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 

@@ -19,10 +19,10 @@ const prisma = new PrismaClient();
 export const getAllMenu = async(req,res) => {
 	try {
 		const response = await prisma.menu.findMany()
-		res.json(response)
+		res.status(200).json(response)
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -33,10 +33,10 @@ export const getMenuById = async(req,res) => {
 				id_menu: Number(req.params.id)
 			}
 		})
-		res.json(result)
+		res.status(200).json(result)
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -52,13 +52,13 @@ export const createMenu = async(req,res) => {
 				harga: Number(harga)
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result,
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -75,13 +75,13 @@ export const updateMenu = async(req,res) => {
 				harga: Number(harga)
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(500).json({msg: error})
 	}
 }
 
@@ -92,12 +92,12 @@ export const deleteMenu = async(req,res) => {
 				id_menu: Number(req.params.id)
 			}
 		})
-		res.json({
+		res.status(200).json({
 			success: true,
 			data: result
 		})
 	} catch (error) {
 		console.log(error)
-		res.json({msg: error})
+		res.status(200).json({msg: error})
 	}
 }

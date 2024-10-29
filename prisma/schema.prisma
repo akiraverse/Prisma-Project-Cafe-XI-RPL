@@ -42,13 +42,11 @@ model transaksi {
   tgl_transaksi DateTime
   id_user Int
   id_meja Int
-  id_menu Int
   nama_pelanggan String
   status status
   detail_transaksi detail_transaksi[]
   user user @relation(fields: [id_user],references: [id_user])
   meja meja @relation(fields: [id_meja],references: [id_meja])
-  menu menu @relation(fields: [id_menu],references: [id_menu])
 }
 
 enum status {
@@ -69,7 +67,6 @@ model menu {
   deskripsi String
   gambar String
   harga Int
-  transaksi transaksi[]
   detailTransaksi detail_transaksi[]
 }
 
